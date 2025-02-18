@@ -15,6 +15,7 @@ public class ServidorHilo extends Entrada implements Runnable {
         mandarMensaje(sc, cliente);
         recibir(cliente);
         
+        cliente.close();
     }
 
    
