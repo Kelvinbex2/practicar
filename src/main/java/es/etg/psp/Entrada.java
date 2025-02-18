@@ -18,7 +18,7 @@ public class Entrada {
         output.writeUTF(msg);
     }
 
-    public void mandar(Socket cliente) throws IOException {
+    public void recibir(Socket cliente) throws IOException {
         InputStream aux = cliente.getInputStream();
         DataInputStream input = new DataInputStream(aux);
         String msg = input.readUTF();
