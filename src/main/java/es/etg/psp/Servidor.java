@@ -1,10 +1,25 @@
 package es.etg.psp;
 
-public class Servidor {
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Servidor extends Entrada {
     
-    public static void main(String[] args) {
-        Thread t1 = new Thread(new ServidorHilo());
-        t1.start();
+
+    
+    public static void main(String[] args) throws RuntimeException {
+       try (ServerSocket serverSocket = new ServerSocket(PUERTO) ) {
+        System.out.println("Servidor escuchando en " + PUERTO);
+
+        while (true) {
+            Socket cliente = serverSocket.accept();
+            Thread tr = new Thread(new ServidorHilo(cliente));
+            tr.start();
+        }
+       } catch (Exception e) {
+        System.out.println("Error:" + e.getMessage());
+        throw new RuntimeException(e.getMessage());
+       }
     }
   
 }
