@@ -6,17 +6,21 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Servidor extends Entrada {
-    // Se pide crear un servidor que envíe un mensaje y un cliente que reciba y muestre ese mensaje.
+    // Se pide crear un servidor que envíe un mensaje y un cliente que reciba y
+    // muestre ese mensaje.
+    // Se pide modificar el ejemplo anterior para que el cliente envíe un mensaje y
+    // el servidor lo muestre en consola.
 
     public void conexionServer(Socket cliente) throws IOException {
-        Scanner sc = new Scanner(System.in);
 
         ServerSocket server = new ServerSocket(PUERTO);
 
         System.out.println("Servidor escuchando en " + PUERTO);
 
         cliente = server.accept();
+
         mandarMensaje(sc, cliente);
+        recibir(cliente);
 
         cliente.close();
     }
@@ -29,7 +33,7 @@ public class Servidor extends Entrada {
     public void mandarMensaje(Scanner sc, Socket socket) throws IOException {
 
         System.out.println("Escribe Mensaje al cliente: ");
-        String msg = sc.nextLine();
+        String msg = "Servidor: " + sc.nextLine();
 
         mandar(socket, msg);
     }

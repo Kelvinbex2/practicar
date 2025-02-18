@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Entrada {
     public final static int PUERTO = 2222;
     public static final String MSG_SERVER = "Servidor esperado peticiones en el: ";
     public static final String HOST = "localhost";
+    public static final Scanner sc = new Scanner(System.in);
 
     public void mandar(Socket cliente, String msg) throws IOException {
         OutputStream aux = cliente.getOutputStream();
