@@ -13,20 +13,22 @@ public class Cliente extends Entrada {
     }
 
     public void conectar() throws UnknownHostException, IOException {
-
         Socket cliente = new Socket(HOST, PUERTO);
 
-        
-        recibir(cliente);
-        mandarMensaje(sc,cliente);
+        do {
+            System.out.print("> ");
+            int msg = sc.nextInt();
+            mandarMensaje(msg, cliente);
+            recibir(cliente);
+        } while (!recibir(cliente).equalsIgnoreCase("KO"));
+
+        cliente.close();
+
     }
 
-    public void mandarMensaje(Scanner sc, Socket socket) throws IOException {
+    public void mandarMensaje(int msg, Socket socket) throws IOException {
 
-        System.out.println("Escribe Mensaje al cliente: ");
-        String msg = "Cliente: "  +  sc.nextLine();
-
-        mandar(socket, msg);
+        mandar(socket, String.valueOf(msg));
     }
 
 }
