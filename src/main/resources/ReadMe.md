@@ -1,6 +1,8 @@
 
-Modifica el código del servidor/cliente creado anteriormente para que el servidor procese peticiones en hilos:
+Se tiene un servidor de impresión. Al inicializarlo se muestran sus parámetros de inicio:
 
-1. El servidor se ejecutará sin fin, ahora solo procesa una petición.
-2. Se necesita una clase que desarrolle la funcionalidad
-3. Cuando llegue una petición del cliente, el servidor creará un hilo que gestionará la petición.
+* Numero de hojas que permite imprimir
+
+Se creará un cliente que solicite imprimir hojas en el servidor (se le pasará el número de hojas a imprimir).
+
+Cuando se imprime un documento en el servidor, se debe reducir el número de hojas disponibles para su impresión, y al cliente se le envía OK. Si el número de hojas disponible para imprimir es menor que cero, se deberá enviar al cliente KO.
