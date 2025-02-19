@@ -2,29 +2,31 @@ package es.etg.psp;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ServidorHilo extends Entrada implements Runnable {
 
     private Socket cliente;
+    private Hojas numHojas;
 
-    public ServidorHilo(Socket cliente) {
+    public ServidorHilo(Socket cliente, Hojas numHojas) {
         this.cliente = cliente;
+        this.numHojas = numHojas;
     }
 
-    public void mandarMensaje(Scanner sc, Socket socket) throws IOException {
+    public int recibirDatos(Socket socket) throws IOException {
+        int pas = Integer.parseInt(recibir(socket));
 
-        System.out.println("Escribe Mensaje al cliente: ");
-        String msg = "Servidor: " + sc.nextLine();
+        return numHojas.procesar(pas, socket);
 
-        mandar(socket, msg);
     }
 
     @Override
     public void run() throws RuntimeException {
         try {
-            mandarMensaje(sc, cliente);
-            recibir(cliente);
+            int hojasRestantes = recibirDatos(cliente);
+
+            System.out.println("Queda: " + hojasRestantes);
+
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -13,6 +13,9 @@ public class Entrada {
     public static final String MSG_SERVER = "Servidor esperado peticiones en el: ";
     public static final String HOST = "localhost";
     public static final Scanner sc = new Scanner(System.in);
+    public static final int NUM_HOJAS = 10;
+    public static final String MSG_OK = "OK";
+    public static final String MSG_KO = "KO";
 
     public void mandar(Socket cliente, String msg) throws IOException {
         OutputStream aux = cliente.getOutputStream();
@@ -20,10 +23,11 @@ public class Entrada {
         output.writeUTF(msg);
     }
 
-    public void recibir(Socket cliente) throws IOException {
+    public String recibir(Socket cliente) throws IOException {
         InputStream aux = cliente.getInputStream();
         DataInputStream input = new DataInputStream(aux);
         String msg = input.readUTF();
         System.out.println(msg);
+        return msg;
     }
 }
