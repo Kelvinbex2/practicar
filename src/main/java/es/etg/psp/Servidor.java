@@ -10,15 +10,14 @@ public class Servidor extends Entrada {
         try (ServerSocket server = new ServerSocket(PUERTO)) {
             System.out.println("Servidor escuchando en el servidor " + server.getLocalPort());
             while (true) {
-            
-            Socket cliente = server.accept();
-            Thread tr = new Thread(new ServidorHilo(cliente));
-            tr.start();
+
+                Socket cliente = server.accept();
+                Thread tr = new Thread(new ServidorHilo(cliente));
+                tr.start();
             }
-            
 
         } catch (Exception e) {
-            // TODO: handle exception
+            throw new RuntimeException(e.getMessage());
         }
     }
 
