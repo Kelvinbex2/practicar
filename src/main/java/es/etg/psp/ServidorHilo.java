@@ -13,19 +13,22 @@ public class ServidorHilo extends Entrada implements Runnable {
         this.numHojas = numHojas;
     }
 
-    public int recibirDatos(Socket socket) throws IOException {
-        int pas = Integer.parseInt(recibir(socket));
+    public void recibirDatos() throws IOException {
+        String msg = recibir(cliente);
+        System.out.println("Numero recibido de cliente: " + msg);
 
-        return numHojas.procesar(pas, socket);
+        int pas = Integer.parseInt(msg);
+
+        int hojasRestante = numHojas.procesar(pas, cliente);
+
+        System.out.println(" Hojas restantes: " + hojasRestante);
 
     }
 
     @Override
     public void run() throws RuntimeException {
         try {
-            int hojasRestantes = recibirDatos(cliente);
-
-            System.out.println("Queda: " + hojasRestantes);
+            recibirDatos();
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

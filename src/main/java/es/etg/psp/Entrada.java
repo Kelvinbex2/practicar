@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Entrada {
-    public final static int PUERTO = 2222;
+    public final static int PUERTO = 1111;
     public static final String MSG_SERVER = "Servidor esperado peticiones en el: ";
     public static final String HOST = "localhost";
     public static final Scanner sc = new Scanner(System.in);
