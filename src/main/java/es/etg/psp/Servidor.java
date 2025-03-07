@@ -12,6 +12,7 @@ public class Servidor extends Entrada {
             System.out.println("Servidor escuchando en el servidor " + server.getLocalPort());
             while (true) {
                 Socket cliente = server.accept();
+                System.out.println("Cliente conectado desde " + cliente.getInetAddress());
 
                 Thread tr = new Thread(new ServidorHilo(cliente, hoja));
                 tr.start();

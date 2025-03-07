@@ -15,12 +15,13 @@ public class Cliente extends Entrada {
     public void conectar() throws UnknownHostException, IOException {
         Socket cliente = new Socket(HOST, PUERTO);
 
+        String respuest;
         do {
             System.out.print("> ");
             int msg = sc.nextInt();
             mandarMensaje(msg, cliente);
-            recibir(cliente);
-        } while (!recibir(cliente).equalsIgnoreCase("KO"));
+            respuest=recibir(cliente);
+        } while (!respuest.equalsIgnoreCase("KO"));
 
         cliente.close();
 
