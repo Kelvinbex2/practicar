@@ -28,10 +28,20 @@ public class ServidorHilo extends Entrada implements Runnable {
     @Override
     public void run() throws RuntimeException {
         try {
-            recibirDatos();
+            while(true){
+                recibirDatos();
+            }
+         
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
+        }finally{
+            try {
+                cliente.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 

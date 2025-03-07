@@ -8,6 +8,7 @@ public class Servidor extends Entrada {
     public static void main(String[] args) throws RuntimeException {
         Hojas hoja = new Hojas();
 
+        
         try (ServerSocket server = new ServerSocket(PUERTO)) {
             System.out.println("Servidor escuchando en el servidor " + server.getLocalPort());
             while (true) {
