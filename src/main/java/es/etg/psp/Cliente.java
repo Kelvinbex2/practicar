@@ -13,8 +13,6 @@ public class Cliente extends Entrada {
     }
 
     public void conectar() throws UnknownHostException, IOException {
-
-      
         while (true) {
             Socket cliente = new Socket(HOST, PUERTO);
             mandarMensaje(sc, cliente);
