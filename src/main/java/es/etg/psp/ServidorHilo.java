@@ -23,8 +23,11 @@ public class ServidorHilo extends Entrada implements Runnable {
     @Override
     public void run() throws RuntimeException {
         try {
-            mandarMensaje(sc, cliente);
-            recibir(cliente);
+            while (true) {
+                mandarMensaje(sc, cliente);
+                recibir(cliente);
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

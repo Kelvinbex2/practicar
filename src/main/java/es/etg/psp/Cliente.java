@@ -14,17 +14,20 @@ public class Cliente extends Entrada {
 
     public void conectar() throws UnknownHostException, IOException {
 
-        Socket cliente = new Socket(HOST, PUERTO);
-
+      
+        while (true) {
+            Socket cliente = new Socket(HOST, PUERTO);
+            mandarMensaje(sc, cliente);
+            recibir(cliente);
         
-        recibir(cliente);
-        mandarMensaje(sc,cliente);
+        }
+
     }
 
     public void mandarMensaje(Scanner sc, Socket socket) throws IOException {
 
         System.out.println("Escribe Mensaje al cliente: ");
-        String msg = "Cliente: "  +  sc.nextLine();
+        String msg = "Cliente: " + sc.nextLine();
 
         mandar(socket, msg);
     }
